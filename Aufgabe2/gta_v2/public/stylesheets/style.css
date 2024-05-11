@@ -235,4 +235,6 @@ a {
   }
 }
 
-/* Test*/
+#map { 
+  height: 500px;
+}
