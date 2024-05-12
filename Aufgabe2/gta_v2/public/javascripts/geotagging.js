@@ -125,16 +125,22 @@ function updateLocation() {
 
         document.getElementById('search_latitude').value = location.latitude;
         document.getElementById('search_longitude').value = location.longitude;
-
-        // Initialize map with current location
+        
+        // Ab hier unsicher bitte nochmal nachschauen
         var map = new MapManager();
         map.initMap(location.latitude, location.longitude);
-        // Hide the image
-        document.getElementById('mapView').style.display = 'none';
-        // Show the map container
-        document.getElementById('result_map').style.display = 'flex';
+        map.updateMarkers(location.latitude, location.longitude);
+
+        var mapViewImage = document.getElementById('mapView');
+        mapViewImage.remove();
+
+        mapViewLabel = document.querySelector('.discovery__map span');
+        mapViewLabel.remove();
+        
     });
 }
 
 // Wait for the page to fully load its DOM content, then call updateLocation
-document.addEventListener("DOMContentLoaded", updateLocation);
+document.addEventListener("DOMContentLoaded", () => {
+    updateLocation();
+});
